@@ -1,11 +1,16 @@
 'use strict';
 
 const Server = require('./server');
-const server = new Server('localhost', 4000);
+const server1 = new Server('localhost', 4000);
+const server2 = new Server('localhost', 5000);
 
-const task = (data, server) => {
-    console.log('to aqui');
-    server.write(`${data}`);
+const task = async (data, server) => {
+    await server.write(`Server 1: message: ${data}`);
 };
 
-server.task(task);
+const task2 = async (data, server) => {
+    await server.write(`Server 2: message: ${data}`);
+};
+
+server1.task(task);
+server2.task(task2);
