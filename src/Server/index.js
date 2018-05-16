@@ -1,6 +1,7 @@
 'use strict';
 
 const net   = require('net');
+const json  = require('../Parsers/json');
 
 class Server {
 
@@ -11,7 +12,10 @@ class Server {
 
     task(task) {
         net.createServer(socket => {
-            socket.on('data', data => task(data, socket));
+            socket.on('data', async data => {
+                let message = await json(data);
+                task(message, socket);
+            });
         }).listen(this.port, this.host);
     };
 }

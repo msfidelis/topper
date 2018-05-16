@@ -1,0 +1,25 @@
+{
+  "name": "yeap",
+  "version": "1.0.0",
+  "description": "Lightweight Node.js framework to build fast microservices on TCP Servers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msfidelis/yeap.git"
+  },
+  "keywords": [
+    "tcp",
+    "microservices",
+    "gateway"
+  ],
+  "author": "Matheus Fidelis <msfidelis01@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/msfidelis/yeap/issues"
+  },
+  "homepage": "https://github.com/msfidelis/yeap#readme"
+}
