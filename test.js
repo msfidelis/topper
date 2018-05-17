@@ -1,11 +1,10 @@
 'use strict';
 
 const { Server } = require('./');
-const server = new Server('localhost', 4000);
+const server = new Server('0.0.0.0', 4000);
 
 const task = async (data, server) => {
-    console.log(`New message!`);
-    await server.write(`Server Payload: message: ${data}`);
+    server.write(`hello, my name is ${data.name} and Im ${data.age} old\n`);
 }
 
 server.task(task);
