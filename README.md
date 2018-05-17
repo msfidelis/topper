@@ -14,9 +14,9 @@ npm install topper
 const { Server } = require('topper');
 const server = new Server('0.0.0.0', 4000);
 
-const task = async (data, server) => {
+const task = async (data, socket) => {
     console.log(`New message!`);
-    await server.write(`Message payload: ${data}`);
+    await socket.write(`Message payload: ${data}`);
 }
 
 server.task(task);
@@ -48,8 +48,8 @@ New message!
 const { Server } = require('topper');
 const server = new Server('0.0.0.0', 4000);
 
-const task = async (data, server) => {
-    server.write(`hello, my name is ${data.name} and i'm ${data.age} old\n`);
+const task = async (data, socket) => {
+    socket.write(`hello, my name is ${data.name} and i'm ${data.age} old\n`);
 }
 
 server.task(task);
