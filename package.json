@@ -1,5 +1,5 @@
 {
-  "name": "yeap",
+  "name": "topper",
   "version": "1.0.0",
   "description": "Lightweight Node.js framework to build fast microservices on TCP Servers.",
   "main": "index.js",
