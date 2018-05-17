@@ -8,6 +8,7 @@ class Server {
     constructor(host = '127.0.0.1', port = 6960) {
         this.host = host;
         this.port = port;
+        console.log(`New task registered on tcp://${host}:${port}`);
     };
 
     task(task) {
