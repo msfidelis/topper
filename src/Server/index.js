@@ -16,7 +16,7 @@ class Server {
     constructor(host = '127.0.0.1', port = 6960) {
         this.host = host;
         this.port = port;
-        this.actions = [];
+        this.actions = {};
         console.log(`New task registered on tcp://${host}:${port}`);
     };
 
@@ -34,14 +34,14 @@ class Server {
     };
 
     /**
-     * Register a multiple tasks on server
+     * Register multiple tasks on server
      * @param {*} jobs 
      */
     multiTask(jobs) {
 
         jobs.forEach(job => this.actions[job.name] = job.task);
-
         net.createServer(socket => {
+            this._errorHandlers(socket);
             socket.on('data', async data => {
                 const message   = await data.toString('utf8').replace(/[\n\r]*$/, '');
                 const action    = await message.replace(/ .*/,'');
@@ -51,6 +51,19 @@ class Server {
         }).listen(this.port, this.host);
 
     }
+
+    /**
+     * Handler Common Errors
+     * @param {*} socket 
+     */
+    _errorHandlers(socket) {
+        socket.on('error', exception => {
+            console.log('SOCKET ERROR');
+            console.log(exception);
+            socket.destroy();
+        });
+    }
+
 }
 
 module.exports = Server;

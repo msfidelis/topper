@@ -32,7 +32,7 @@ verything is connected, Todd...
 Message payload: verything is connected, Todd...
 ```
 
-### Server console output 
+### Server console output
 
 ```bash
 node app.js
@@ -60,4 +60,65 @@ server.task(task);
 nc localhost 4000
 {"name": "Matheus Fidelis", "age":22}
 hello, my name is Matheus Fidelis and i'm 22 old
+```
+
+
+## Create a Multi Task Microservice
+
+Create some arrays with task definitions and register on your server
+
+```javascript
+const { Server } = require('./');
+const server = new Server('0.0.0.0', 4000);
+
+
+const tasks = [
+    {
+        name: 'Ping',
+        task: async (data, server) => await server.write('Pong\n')
+    },
+    {
+        name: 'Sum',
+        task: async (data, server) => {
+            let sum = data.numbers.reduce((prev, curr) => prev + curr);
+            await server.write(`The sum is: ${sum} \n`);
+        }
+    }
+]
+
+server.multiTask(tasks);
+```
+
+### Client console
+
+```bash
+echo 'Sum {"numbers": [1, 2, 3, 4, 5]}' | nc localhost 4000
+```
+
+```bash
+echo 'Ping' | nc localhost 4000
+```
+
+Output:
+
+```
+The sum is: 15
+```
+
+```
+Pong
+```
+
+## Create a simple client
+
+```javascript
+const { Client } = require('topper');
+const client = new Client();
+
+client.addServer('0.0.0.0', 4000);
+
+client.send('Sum', {numbers: [1,2]})
+    .then(success => {
+        console.log(success.toString())
+    });
 ```
