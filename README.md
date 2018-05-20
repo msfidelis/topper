@@ -118,7 +118,5 @@ const client = new Client();
 client.addServer('0.0.0.0', 4000);
 
 client.send('Sum', {numbers: [1,2]})
-    .then(success => {
-        console.log(success.toString())
-    });
+    .then(success => console.log(success.toString()));
 ```
