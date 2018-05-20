@@ -1,6 +1,6 @@
 {
   "name": "topper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lightweight Node.js framework to build fast microservices on TCP Servers.",
   "main": "index.js",
   "scripts": {
