@@ -1,13 +1,15 @@
 
 # Architecture Benchmark
 
-### REST to REST 
+### Benchmark Tool
 
 Benchmark Tool: [Autocannon HTTP/1.1 benchmarking tool](https://github.com/mcollina/autocannon)
 
 ```bash
 autocannon -c 20 -a 5000  -m POST --body '{"numbers": [1, 2, 3, 4, 5, 6, 7, 8, 9]}' --headers 'Content-Type:Application/json' http://localhost:9000/sum
 ```
+
+### REST to REST 
 
 * Express API Endpoint --> Express REST Microservice
 
