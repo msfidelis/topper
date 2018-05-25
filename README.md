@@ -1,4 +1,38 @@
 
+# Architecture Benchmark
+
+### REST to REST 
+
+Benchmark Tool: [Autocannon HTTP/1.1 benchmarking tool](https://github.com/mcollina/autocannon)
+
+```bash
+autocannon -c 20 -a 5000  -m POST --body '{"numbers": [1, 2, 3, 4, 5, 6, 7, 8, 9]}' --headers 'Content-Type:Application/json' http://localhost:9000/sum
+```
+
+* Express API Endpoint --> Express REST Microservice
+
+```
+Stat         Avg    Stdev Max
+Latency (ms) 76.52  22.53 234.85
+Req/Sec      250    50.99 320
+Bytes/Sec    112 kB 23 kB 144 kB
+
+5k requests in 20s, 2.25 MB read
+```
+
+### REST to Topper
+
+* Express API Endpoint --> Topper TCP Microservice
+
+```
+Stat         Avg    Stdev  Max
+Latency (ms) 24.16  6.4    98.45
+Req/Sec      714.29 244.42 919
+Bytes/Sec    312 kB 107 kB 402 kB
+
+5k requests in 7s, 2.19 MB read
+```
+
 # Installation
 
 ```bash
