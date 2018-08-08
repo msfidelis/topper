@@ -111,13 +111,13 @@ const server = new Server('0.0.0.0', 4000);
 const tasks = [
     {
         name: 'Ping',
-        task: async (data, server) => await server.write('Pong\n')
+        task: async (data, socket) => await socket.write('Pong\n')
     },
     {
         name: 'Sum',
-        task: async (data, server) => {
+        task: async (data, socket) => {
             let sum = data.numbers.reduce((prev, curr) => prev + curr);
-            await server.write(`The sum is: ${sum} \n`);
+            await socket.write(`The sum is: ${sum} \n`);
         }
     }
 ]
